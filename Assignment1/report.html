@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="using-command-line-utilities-for-network-debugging">Using command-line utilities for network debugging</h1>
+<h2 id="question-1">Question 1</h2>
+<p>a. <img src="1aifconfig.png" alt="alt text"> <br>
+b. The IP address on the website https://whatismyip.com is different. This is because the IP addres shown in ifconfig is the private IP address provided by LAN and the IP address on the website is the public IP address that is used to identify the device on the internet.</p>
+<h2 id="question-2">Question 2</h2>
+<p><img src="1bifconfig.png" alt="alt text">
+you can revert back to the IP address by using the same command and use the original IP address. Alternatively, if you don't know the original IP address, you can reboot the system to revert to the original IP address.</p>
+<h2 id="question-3">Question 3</h2>
+<p>a. <img src="3anetcat.png" alt="alt text">
+b. <img src="3bnetstat.png" alt="alt text"></p>
+<h2 id="question-4">Question 4</h2>
+<p>a. <img src="4anslookup.png" alt="alt text"> The query type soa shows where the authorative answers can be found from.<br>
+b. <img src="4bdig.png" alt="alt text"> This entry would expire from the local DNS server in 184 seconds which means the cache for this will be cleared from the server every 184 seconds.</p>
+<h2 id="question-5">Question 5</h2>
+<p>a. <img src="5atraceroute.png" alt="alt text"> <br>
+average latency <br>
+1 0.264ms <br>
+2 1.489ms <br>
+3 0.390ms <br>
+4 0.634ms <br>
+5 NA <br>
+6 5.466ms <br>
+7 4.132ms <br>
+8 27.115ms <br>
+9 30.218ms <br>
+10 29.751ms <br>
+<br>
+b.
+<img src="5bping.png" alt="alt text"></p>
+<pre class="hljs"><code><div>PING google.in (142.250.193.4) 56(84) bytes of data.
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=1 ttl=54 time=30.1 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=2 ttl=54 time=30.1 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=3 ttl=54 time=30.0 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=4 ttl=54 time=30.8 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=5 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=6 ttl=54 time=30.1 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=7 ttl=54 time=30.3 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=8 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=9 ttl=54 time=30.3 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=10 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=11 ttl=54 time=30.6 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=12 ttl=54 time=30.1 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=13 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=14 ttl=54 time=30.6 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=15 ttl=54 time=30.6 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=16 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=17 ttl=54 time=30.1 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=18 ttl=54 time=30.4 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=19 ttl=54 time=30.8 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=20 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=21 ttl=54 time=30.0 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=22 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=23 ttl=54 time=30.6 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=24 ttl=54 time=30.1 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=25 ttl=54 time=30.4 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=26 ttl=54 time=31.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=27 ttl=54 time=30.7 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=28 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=29 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=30 ttl=54 time=30.3 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=31 ttl=54 time=30.1 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=32 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=33 ttl=54 time=31.3 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=34 ttl=54 time=30.3 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=35 ttl=54 time=30.4 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=36 ttl=54 time=30.0 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=37 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=38 ttl=54 time=30.3 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=39 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=40 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=41 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=42 ttl=54 time=30.1 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=43 ttl=54 time=31.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=44 ttl=54 time=31.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=45 ttl=54 time=30.2 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=46 ttl=54 time=30.1 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=47 ttl=54 time=30.0 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=48 ttl=54 time=30.4 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=49 ttl=54 time=30.3 ms
+64 bytes from del11s14-in-f4.1e100.net (142.250.193.4): icmp_seq=50 ttl=54 time=30.1 ms
+
+--- google.in ping statistics ---
+50 packets transmitted, 50 received, 0% packet loss, time 49089ms
+rtt min/avg/max/mdev = 30.003/30.338/31.261/0.327 ms
+</div></code></pre>
+<p>the average ping is 30.338ms. (NOTE: I decided to take text output because screenshot wouldn't fit the entire contents) <br>
+<br>
+c. The total traceroute latency is 99.459ms which doesn't much the latency of 30.338ms from ping. Traceroute sends packets to each node and waits for the timeout response on each node. The traceroute shows the time it takes for each of those nodes to respond. <br>
+<br>
+d. The maximum latency in (a) is very close to the average ping latency in (b). This is because the latency to get to the final destination should be the same. <br>
+<br>
+e. There are more than one entries in intermediate hosts because there is more than one path from the machine to the final destination. <br>
+<br>
+f. <img src="5fping.png" alt="alt text"></p>
+<pre class="hljs"><code><div>PING stanford.edu (171.67.215.200) 56(84) bytes of data.
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=1 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=2 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=3 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=4 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=5 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=6 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=7 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=8 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=9 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=10 ttl=235 time=270 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=11 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=12 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=13 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=14 ttl=235 time=272 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=15 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=16 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=17 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=18 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=19 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=20 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=21 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=22 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=23 ttl=235 time=274 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=24 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=25 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=26 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=27 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=28 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=29 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=30 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=31 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=32 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=33 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=34 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=35 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=36 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=37 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=38 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=39 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=40 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=41 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=42 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=43 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=44 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=45 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=46 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=47 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=48 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=49 ttl=235 time=271 ms
+64 bytes from web.stanford.edu (171.67.215.200): icmp_seq=50 ttl=235 time=271 ms
+
+--- stanford.edu ping statistics ---
+50 packets transmitted, 50 received, 0% packet loss, time 49063ms
+rtt min/avg/max/mdev = 270.380/270.999/274.375/0.556 ms
+</div></code></pre>
+<p>The average latency for stanford.edu is 270.999ms <br>
+<br>
+g. <img src="5gtraceroute.png" alt="alt text"> there are 26 intermeidate hosts in stanford.edu compared to 10 intermediate hosts in google.in <br>
+<br>
+h. The main reason for higher latency in stanford.edu compared to google.in is due to the distance of the machines being different. stanford.edu probably has its node in america while google.in is probably in India. Latency of communication increases as distance increases.</p>
+<h2 id="question-6">Question 6</h2>
+<p><img src="6loopback.png" alt="alt text">
+Just remove the loopback and you can have 100% packet loss.</p>
+
+</body>
+</html>
