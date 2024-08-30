@@ -14,7 +14,7 @@ b. ![alt text](3bnetstat.png)
 
 ## Question 4
 a. ![alt text](4anslookup.png) The query type soa shows where the authorative answers can be found from.\
-b. ![alt text](4bdig.png) This entry would expire from the local DNS server in 184 seconds which means the cache for this will be cleared from the server every 184 seconds.
+b. ![alt text](image.png) This entry would expire from the local DNS server in 3600 seconds which means the cache for this will be cleared from the server every 184 seconds.
 
 ## Question 5
 a. ![alt text](5atraceroute.png) \
