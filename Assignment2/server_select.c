@@ -149,8 +149,6 @@ int main() {
             for (i = 0; i < max_clients; i++) {
                 if (client_socket[i] == 0) {
                     client_socket[i] = new_socket;
-                    printf("New connection, socket fd is %d, ip is : %s, port : %d\n",
-                           new_socket, inet_ntoa(address.sin_addr), ntohs(address.sin_port));
                     break;
                 }
             }
@@ -162,8 +160,6 @@ int main() {
             if (FD_ISSET(sd, &readfds)) {
                 if ((valread = read(sd, buffer, BUFFER_SIZE)) == 0) {
                     getpeername(sd, (struct sockaddr*)&address, (socklen_t*)&addrlen);
-                    printf("Host disconnected, ip %s, port %d\n",
-                           inet_ntoa(address.sin_addr), ntohs(address.sin_port));
                     close(sd);
                     client_socket[i] = 0;
                 } else {
@@ -177,6 +173,7 @@ int main() {
                              top_processes[1].name, top_processes[1].pid, top_processes[1].utime, top_processes[1].stime);
 
                     send(sd, response, strlen(response), 0);
+                    printf("Message Sent");
                 }
             }
         }
