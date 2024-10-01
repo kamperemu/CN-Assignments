@@ -171,9 +171,9 @@ int main() {
                              "Top CPU Processes:\n1. %s (PID: %d, User: %lld, Kernel: %lld)\n2. %s (PID: %d, User: %lld, Kernel: %lld)",
                              top_processes[0].name, top_processes[0].pid, top_processes[0].utime, top_processes[0].stime,
                              top_processes[1].name, top_processes[1].pid, top_processes[1].utime, top_processes[1].stime);
-
+                    
+                    printf("Message Sent \n");
                     send(sd, response, strlen(response), 0);
-                    printf("Message Sent");
                 }
             }
         }
